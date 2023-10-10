@@ -115,7 +115,7 @@ public class JobData {
 
                         // Add job data to results list
                         jobs.add(row);
-                        break;
+//                        break;
                     }
                 }
             }

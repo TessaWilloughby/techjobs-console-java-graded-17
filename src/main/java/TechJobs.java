@@ -29,39 +29,27 @@ public class TechJobs {
 
         // Allow the user to search until they manually quit
         while (true) {
-
             String actionChoice = getUserSelection("View jobs by (type 'x' to quit):", actionChoices);
-
             if (actionChoice == null) {
                 break;
             } else if (actionChoice.equals("list")) {
-
                 String columnChoice = getUserSelection("List", columnChoices);
-
                 if (columnChoice.equals("all")) {
                     printJobs(JobData.findAll());
                 } else {
-
                     ArrayList<String> results = JobData.findAll(columnChoice);
-
                     System.out.println("\n*** All " + columnChoices.get(columnChoice) + " Values ***");
-
                     // Print list of skills, employers, etc
                     for (String item : results) {
                         System.out.println(item);
                     }
-                    System.out.println("\n");
                 }
-
             } else { // choice is "search"
-
                 // How does the user want to search (e.g. by skill or employer)
                 String searchField = getUserSelection("Search by:", columnChoices);
-
                 // What is their search term?
                 System.out.println("\nSearch term:");
                 String searchTerm = in.nextLine();
-
                 if (searchField.equals("all")) {
                     printJobs(JobData.findByValue(searchTerm));
                 } else {
@@ -121,16 +109,24 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
+        // Check if list is empty
         if (someJobs.isEmpty()) {
+            // If empty, print message
             System.out.println("No Results");
         }
 
+        // Iterate through each job in the list
         for (HashMap<String, String> someJob : someJobs) {
-            System.out.println("*****");
+            // Print opening seperator
+            System.out.println("\n*****");
+
+            //Iterate through keys and values in the hashmap for current job
             for (String key : someJob.keySet()) {
                 String value = someJob.get(key);
+                // Print key-value pair
                 System.out.println(key + ": " + value);
             }
+            // Print closing seperator
             System.out.println("*****\n");
         }
     }
