@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -69,17 +68,22 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
+        // Initialize list of matching jobs
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
+        // Iterate through each job data row
         for (HashMap<String, String> row : allJobs) {
 
+            // Get the value in the column for the current row
             String aValue = row.get(column);
 
-            if (aValue.contains(value)) {
+            // Perform case-insensitive search
+            if (aValue.toLowerCase().contains(value.toLowerCase())) {
+
+                // Add job data to results list
                 jobs.add(row);
             }
         }
-
         return jobs;
     }
 
@@ -94,8 +98,29 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
-        // TODO - implement this method
-        return null;
+        // Initialize list of matching jobs
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        // Iterate through each job data row
+        for (HashMap<String, String> row : allJobs) {
+
+            // Iterate through values in each column for current row
+            for (String search : row.values()) {
+
+                // Perform case-insensitive search
+                if (search.toLowerCase().contains(value.toLowerCase())) {
+
+                    // Check if job is already in list
+                    if (!jobs.contains(row)) {
+
+                        // Add job data to results list
+                        jobs.add(row);
+                        break;
+                    }
+                }
+            }
+        }
+        return jobs;
     }
 
     /**

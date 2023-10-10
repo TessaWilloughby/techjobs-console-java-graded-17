@@ -50,6 +50,7 @@ public class TechJobs {
                     for (String item : results) {
                         System.out.println(item);
                     }
+                    System.out.println("\n");
                 }
 
             } else { // choice is "search"
