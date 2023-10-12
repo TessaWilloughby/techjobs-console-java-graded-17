@@ -76,7 +76,7 @@ public class TechJobs {
 
         do {
 
-            System.out.println(menuHeader);
+            System.out.println("\n" + menuHeader);
 
             // Print available choices
             for (int j = 0; j < choiceKeys.length; j++) {
@@ -108,26 +108,24 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-
-        // Check if list is empty
+       // Check if list is empty
         if (someJobs.isEmpty()) {
             // If empty, print message
-            System.out.println("No Results");
-        }
-
-        // Iterate through each job in the list
-        for (HashMap<String, String> someJob : someJobs) {
-            // Print opening seperator
-            System.out.println("\n*****");
-
-            //Iterate through keys and values in the hashmap for current job
-            for (String key : someJob.keySet()) {
-                String value = someJob.get(key);
-                // Print key-value pair
-                System.out.println(key + ": " + value);
+            System.out.print("No Results");
+        } else {
+            // Iterate through each job in the list
+            for (HashMap<String, String> someJob : someJobs) {
+                // Print opening seperator
+                System.out.println("\n*****");
+                //Iterate through keys and values in the hashmap for current job
+                for (String key : someJob.keySet()) {
+                    String value = someJob.get(key);
+                    // Print key-value pair
+                    System.out.println(key + ": " + value);
+                }
+                // Print closing seperator
+                System.out.println("*****");
             }
-            // Print closing seperator
-            System.out.println("*****\n");
         }
     }
 }
